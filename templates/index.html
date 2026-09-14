@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartWaste AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>♻️ SmartWaste AI</h1>
+            <p>Intelligent Waste Classification System</p>
+        </div>
+
+
+        <div class="card">
+
+            <div class="upload-box">
+
+                <h2>Upload Waste Image</h2>
+
+                <p>
+                    Upload an image and our TensorFlow
+                    Deep Learning model will classify it.
+                </p>
+
+                <form method="POST" enctype="multipart/form-data">
+
+                    <input
+                        type="file"
+                        name="file"
+                        accept="image/*"
+                        required
+                    >
+
+                    <br>
+
+                    <button type="submit">
+                        🔍 Classify Waste
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        {% if result %}
+
+        <div class="card result">
+
+            <h2>🤖 Prediction Result</h2>
+
+            <div class="prediction">
+                ♻️ {{ result.class }}
+            </div>
+
+            <div class="confidence">
+                🎯 Confidence:
+                {{ "%.2f"|format(result.confidence) }}%
+            </div>
+
+            <div class="recommendation">
+
+                <h3>🌱 Recycling Recommendation</h3>
+
+                <p>
+                    {{ result.recommendation }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="footer">
+
+            <p>
+                Powered by TensorFlow & MobileNetV2
+            </p>
+
+            <p>
+                Smart Waste Management using Deep Learning
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
